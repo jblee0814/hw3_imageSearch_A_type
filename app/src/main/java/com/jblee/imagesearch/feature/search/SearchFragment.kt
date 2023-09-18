@@ -95,11 +95,11 @@ class SearchFragment : Fragment() {
             ?.enqueue(object : Callback<ImageModel?> {
                 override fun onResponse(call: Call<ImageModel?>, response: Response<ImageModel?>) {
                     response.body()?.meta?.let { meta ->
-                        if (meta.getTotal_count() > 0) {
+                        if (meta.totalCount > 0) {
                             response.body()!!.documents.forEach { document ->
-                                val title = document.getDisplay_sitename()
-                                val datetime = document.getDatetime()
-                                val url = document.getThumbnail_url()
+                                val title = document.displaySitename
+                                val datetime = document.datetime
+                                val url = document.thumbnailUrl
                                 resItems.add(SearchItemModel(title, datetime, url))
                             }
                         }
